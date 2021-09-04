@@ -44,8 +44,8 @@ let mapDayWithWageArr = empDailyWageArr.map(mapDayWithWage);
 
 console.log(mapDayWithWageArr);
 
-function isAllFullTimeWage(empWage){
-    return empWage.includes("160");
+function anyPartTimeWage(empWage){
+    return empWage.includes("80");
 }
 
-console.log("Check all elements have full time wage " + mapDayWithWageArr.every(isAllFullTimeWage));
+console.log("Check some elements have part time wage " + mapDayWithWageArr.some(anyPartTimeWage));
