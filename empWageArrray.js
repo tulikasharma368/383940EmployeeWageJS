@@ -33,32 +33,11 @@ while(totalEmpHours <= MAX_HOURS_IN_MONTH &&
       totalEmpHours += empHrs;
       empDailyWageArr.push(calcDailyWage(empHrs));
         }
+console.log("Daily wages: " + empDailyWageArr);
 
-let  empWage = totalEmpHours * WAGE_PER_HOUR;
-console.log("UC 6: " + "\n" +
-            "Total days: " + totalWorkingDays + "\n" +
-            "Total Hours: " + totalEmpHours + "\n" +
-            "Emp Wage: " + empWage);
-//console.log("Daily wage array: " + empDailyWageArr);
-
-//Array Helper Functions
-let totEmpWage = 0;
-empDailyWageArr.forEach(sum);
-function sum(dailyWage){
-    totEmpWage += dailyWage;
+function checkTime(empWage){
+    return empWage == 160;
 }
 
-console.log("UC 7A: " + "\n" +
-            "Total days: " + totalWorkingDays + "\n" +
-            "Total Hours: " + totalEmpHours + "\n" +
-            "Emp Wage: " + totEmpWage);
-
-function sumTwo(totalEmpWage, num){
-    return totalEmpWage + num;
-}
-
-var total = empDailyWageArr.reduce(sumTwo);
-console.log("UC 7B: " + "\n" +
-            "Total days: " + totalWorkingDays + "\n" +
-            "Total Hours: " + totalEmpHours + "\n" +
-            "Emp Wage: " + total);
+var fullTimeWage = empDailyWageArr.filter(checkTime);
+console.log("Days with full time wage equal to 160: " + fullTimeWage);
