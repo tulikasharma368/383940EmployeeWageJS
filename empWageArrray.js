@@ -33,11 +33,20 @@ while(totalEmpHours <= MAX_HOURS_IN_MONTH &&
       totalEmpHours += empHrs;
       empDailyWageArr.push(calcDailyWage(empHrs));
         }
-console.log("Daily wages: " + empDailyWageArr);
+
+//Day Along With Daily Wage Using Array Map Helper Function        
+let dailyCntr = 0;
+function mapDayWithWage(dailyWage) {
+    dailyCntr++;
+    return "Day "+ dailyCntr + " : " + dailyWage;
+}
+let mapDayWithWageArr = empDailyWageArr.map(mapDayWithWage);
+
+console.log(mapDayWithWageArr);
 
 function checkTime(empWage){
-    return empWage == 160;
+    return empWage.includes("160");
 }
 
-var fullTimeWage = empDailyWageArr.filter(checkTime);
-console.log("Days with full time wage equal to 160: " + fullTimeWage);
+var firstOccurenceOfFullTimeWage = mapDayWithWageArr.find(checkTime);
+console.log("First Time FullTime Wage was Earned on Day: " + firstOccurenceOfFullTimeWage);
