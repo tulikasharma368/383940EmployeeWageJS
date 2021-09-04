@@ -44,8 +44,11 @@ let mapDayWithWageArr = empDailyWageArr.map(mapDayWithWage);
 
 console.log(mapDayWithWageArr);
 
-function anyPartTimeWage(empWage){
-    return empWage.includes("80");
+function totalDaysEmployeeWorked(numOfDays, dailyWages){
+    if(dailyWages > 0) return numOfDays+1;
+    return numOfDays;
 }
 
-console.log("Check some elements have part time wage " + mapDayWithWageArr.some(anyPartTimeWage));
+
+console.log("Number of days worked: " + empDailyWageArr.reduce(totalDaysEmployeeWorked,0));
+
