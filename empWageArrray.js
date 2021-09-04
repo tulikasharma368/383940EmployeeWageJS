@@ -44,9 +44,8 @@ let mapDayWithWageArr = empDailyWageArr.map(mapDayWithWage);
 
 console.log(mapDayWithWageArr);
 
-function checkTime(empWage){
+function isAllFullTimeWage(empWage){
     return empWage.includes("160");
 }
 
-var firstOccurenceOfFullTimeWage = mapDayWithWageArr.find(checkTime);
-console.log("First Time FullTime Wage was Earned on Day: " + firstOccurenceOfFullTimeWage);
+console.log("Check all elements have full time wage " + mapDayWithWageArr.every(isAllFullTimeWage));
