@@ -23,11 +23,7 @@ function calcDailyWage(empHrs){
 
 let totalEmpHours = 0;
 let totalWorkingDays = 0;
-let empDailyWageArr = new Array();
-let empDailyHoursMap = new Map();
-let mapDayWithWageArr = new Map();
-
-
+let empDailyWageAndHoursArr = new Array();
 
 while(totalEmpHours <= MAX_HOURS_IN_MONTH &&
       totalWorkingDays <= NUMBER_OF_WORKING_DAYS){
@@ -35,31 +31,15 @@ while(totalEmpHours <= MAX_HOURS_IN_MONTH &&
       let empCheck = Math.floor((Math.random() * 10)%3);
       let empHrs = getWorkingHours(empCheck);
       totalEmpHours += empHrs;
-      empDailyWageArr.push(calcDailyWage(empHrs));
-      empDailyHoursMap.set(totalWorkingDays, empHrs);
-      mapDayWithWageArr.set(totalWorkingDays,calcDailyWage(empHrs));
+      empDailyWageAndHoursArr.push(
+          {
+          dayNum: totalWorkingDays,
+          dailyHours: empHrs,
+          dailyWage: calcDailyWage(empHrs),
+          toString(){
+              return "\nDay: " + this.dayNum + ", Daily hours: " + this.dailyHours + " and Daily wage: " + this.dailyWage;
+          }
+          }
+          );
     }
-
-//console.log(mapDayWithWageArr);
-
-function findTotal(total , dailyVal){
-    return total + dailyVal;
-}
-let totalHoursWorked = (Array.from(empDailyHoursMap.values())).reduce(findTotal,0);
-let totalWageEarned = empDailyWageArr.reduce(findTotal,0);
-console.log("Total hours worked: " + totalHoursWorked);
-console.log("Total wage earned: " + totalWageEarned);
-// console.log(empDailyHoursMap);
-
-var fullTimeWorkingDays = new Array();
-var partTimeWorkingDays = new Array();
-var nonWorkingDays = new Array();
-
-empDailyHoursMap.forEach((value,key,map) =>{
-    if(value == 8) fullTimeWorkingDays.push(key)
-    else if(value == 4) partTimeWorkingDays.push(key)
-    else nonWorkingDays.push(key);
-});
-console.log("Full time working days: " + fullTimeWorkingDays);
-console.log("Part time time working days: " + partTimeWorkingDays);
-console.log("Non working days: " + nonWorkingDays);
+    console.log(empDailyWageAndHoursArr.toString());
